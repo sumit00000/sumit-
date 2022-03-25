@@ -1,0 +1,36 @@
+package mulesoft;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
+import java.sql.SQLException;
+
+public class Favourite_Movie {
+
+	static final String url="jdbc:mysql://localhost:3306/Bollywood_Favouritemovs";
+	static final String userid="root";
+	static final String password="amit";
+	public static void main(String[] args)
+	{
+		try(Connection conn=DriverManager.getConnection(url, userid, password);
+				Statement stmt=conn.createStatement();)
+		{
+			
+			 
+			 String query="Create table Movies(Movie_name varchar(50),Actor_name varchar(50),Actress_Name varchar(50),Director_Name varchar(50),Release_Date date)";
+			 PreparedStatement pst=conn.prepareStatement(query);
+			 stmt.executeUpdate(query);
+			System.out.println("Table Movie is created Succesfully:");
+			stmt.close();
+		}
+		
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		// TODO Auto-generated method stub
+
+	}
+
+}
